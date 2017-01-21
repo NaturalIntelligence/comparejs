@@ -1,0 +1,19 @@
+#DATE: 2017-01-21 18:20:43
+#VERSION: 0.2.9
+#REPORTEE: local
+#ERR: 
+/home/user/spikes/comparejs/node_modules/fastpath/dist/lib/fastPath.js:335
+    return {
+    ^
+RangeError: Maximum call stack size exceeded
+    at fastpath (/home/user/spikes/comparejs/node_modules/fastpath/dist/lib/fastPath.js:335:5)
+
+
+-------------
+/home/user/spikes/comparejs/node_modules/fastpath/dist/index.js:25
+    keys.forEach(function (entry) {
+         ^
+
+RangeError: Maximum call stack size exceeded
+    at Array.forEach (native)
+    at traverse (/home/user/spikes/comparejs/node_modules/fastpath/dist/index.js:25:10)
