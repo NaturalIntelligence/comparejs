@@ -3,5 +3,4 @@ node_js:
 - 7
 script: npm run benchmarktest
 env:
-- CMPJS_ARCH=true
 - CMPJS_REPORTEE=travis

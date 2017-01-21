@@ -9,6 +9,9 @@
 		#jslib{
 			width: 80%
 		}
+		.red{
+			background-color: #ffdcdc; 
+		}
 	</style>
 </head>
 <body>
@@ -39,43 +42,59 @@
 		});
 
         $("#compare").click(function(){
+        	$("#result").empty();
           var list = $("#jslib").val();
 		  $.each(list,function(i){
 		  	var fileName = list[i];
 		  	$.get("benchmark/reports/"+fileName +"_report",function(data){
 		  		var lines = data.split("\n");
-		  		console.log(lines);
-		  		var _labels = new Array(lines.length - 3);
-		  		var _series = new Array(lines.length - 3);
-		  		var srvdtl = lines[2].split(",")
-		  		$("#result").append(getTemplate(fileName,profile[fileName].name,lines[1],lines[0],lines[3]));
-		  		var template = getTemplate();
-		  		for (var i = 4; i < lines.length; i++) {
-		  			var columns = lines[i].split(",");
-		  			_labels[i-4] = columns[1];
-					_series[i-4] = columns[6];
+		  		$("#result").append(getTemplate(profile[fileName].name,lines[1],lines[0],lines[3]));
+		  		if(lines[3].indexOf("#ERR:") > -1){
+		  			var errMsg='<div class="red"><p>';
+		  			for (var i = 4; i < lines.length; i++) {
+		  				errMsg+=lines[i] + '<br />';
+		  			}
+		  			errMsg+='</p></div>';
+		  			$("#result").append(errMsg);
+		  		}else{
+		  			var chartElement = '<div class="ct-chart ct-perfect-fourth" id="chart-'+ fileName +'">';
+		  			chartElement += '</div>'
+		  			$("#result").append(chartElement);
+
+		  			//construct chart
+		  			var _labels = new Array(lines.length - 3);
+			  		var _series = new Array(lines.length - 3);
+			  		var template = getTemplate();
+			  		for (var i = 4; i < lines.length; i++) {
+			  			var columns = lines[i].split(",");
+			  			_labels[i-4] = columns[1];
+						_series[i-4] = columns[6];
+			  		}
+			  		buildChart(fileName,_labels,_series);
 		  		}
-		  		new Chartist.Bar('#chart-' + fileName, {
-				  labels: _labels,
-				  series: [_series]
-				},{horizontalBars: true
-					,seriesBarDistance: 10
-					,height : "50%"
-					,axisY: {
-					    offset: 300
-					}
-				});
+		  		
 		  	})
 		  });
         });
 
-        function getTemplate(id,name,ver,dt,srvdtl){
+        function buildChart(id,_labels,_series){
+        	new Chartist.Bar('#chart-' + id, {
+			  labels: _labels,
+			  series: [_series]
+			},{horizontalBars: true
+				,seriesBarDistance: 10
+				,height : "50%"
+				,axisY: {
+				    offset: 300
+				}
+			});
+        }
+        function getTemplate(name,ver,dt,srvdtl){
         	return '<div>' +
 						'<p>Name: <a href="">'+name+'</a></p>' +
 						'<p>' + ver+'</p>' +
 						'<p>Server detail: '+srvdtl+'</p>' +
 						'<p>Data capture at: '+ dt +'</p>' +
-						'<div class="ct-chart ct-perfect-fourth" id="chart-'+ id +'"></div>' +
 					'</div>';
         }
     });

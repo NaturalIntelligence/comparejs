@@ -1,6 +1,7 @@
 const os = require('os');
 const fs = require('fs');
 const path = require('path');
+const color = require('./benchmark/util/colors');
 
 const reportPath = "benchmark/reports/"
 /**
@@ -13,7 +14,7 @@ var reporter = function(prefix,ver){
 	this.csvLines = "#DATE: " + getDate(today) + " " + getTime(today) + "\r\n";
 	this.csvLines += "#VERSION: " + ver  + "\r\n";
 	this.csvLines += "#REPORTEE: " + (process.env.CMPJS_REPORTEE  || "local" ) + "\r\n";
-	this.csvLines += os.platform() + " " + os.release()  + " " + os.type() + " " + os.arch() + ", Total Memory(mb)" + os.totalmem()/1024 + "\r\n";
+	this.csvLines += os.platform() + " " + os.release()  + " " + os.type() + " " + os.arch() + ", Total Memory(mb)" + (os.totalmem()/1048576) + "\r\n";
 }
 
 reporter.prototype.add = function(suitename,testname,rme,sampleCount,testCount,cycleCount,opsPerSec){
@@ -26,7 +27,12 @@ reporter.prototype.add = function(suitename,testname,rme,sampleCount,testCount,c
 }
 
 reporter.prototype.export = function(){
-	writeToFile(this.reportName,this.csvLines);
+	if(process.env.CMPJS_ARCH){
+		writeToFile(this.reportName,this.csvLines);
+	}else{
+		console.log("Report: " + this.reportName);
+		console.log(color(this.csvLines,'yellow'));
+	}
 	this.csvLines = "";
 }
 
