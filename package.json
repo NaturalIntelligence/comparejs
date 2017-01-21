@@ -22,5 +22,9 @@
   "dependencies": {
     "benchmark": "^2.1.3",
     "microtime": "^2.1.2"
+  },
+  "devDependencies": {
+    "fastpath": "^2.1.0",
+    "jsonpath": "^0.2.9"
   }
 }

@@ -9,11 +9,13 @@ File format
   1st line: OS detail
   2nd to Nth lins: test detail
 **/
-var reporter = function(){
+var reporter = function(prefix,ver){
 	var reportee = process.env.CMPJS_REPORTEE || "report";
-	this.reportName = path.join(reportPath, reportee + "_" + getDatePart(new Date()));
-	this.csvLines = os.platform() + "," + os.release()  + "," + os.type() + "," + os.arch() + "," + os.totalmem() + "\r\n";
-	//appendToFile(this.reportName,csvLine);
+	this.reportName = path.join(reportPath, prefix + "_" +  reportee);
+	var today = new Date();
+	this.csvLines = "#DATE: " + getDate(today) + " " + getTime(today) + "\r\n";
+	this.csvLines += "#VERSION: " + ver  + "\r\n";
+	this.csvLines += os.platform() + "," + os.release()  + "," + os.type() + "," + os.arch() + "," + os.totalmem() + "\r\n";
 }
 
 reporter.prototype.add = function(suitename,testname,rme,sampleCount,testCount,cycleCount,opsPerSec){
@@ -30,8 +32,11 @@ reporter.prototype.export = function(){
 	this.csvLines = "";
 }
 
-function getDatePart (dt){
-	return dt.getFullYear() + pad(dt.getMonth()+1,2) + pad(dt.getDate(),2) + "_" + pad(dt.getHours(),2) + pad(dt.getMinutes(),2) + pad(dt.getSeconds(),2);
+function getDate (dt){
+	return dt.getFullYear() + "-" + pad(dt.getMonth()+1,2) + "-" + pad(dt.getDate(),2);
+}
+function getTime (dt){
+	return pad(dt.getHours(),2) + ":" + pad(dt.getMinutes(),2) + ":" + pad(dt.getSeconds(),2);
 }
 
 var pad = function(n, width, z) {
@@ -43,7 +48,7 @@ var pad = function(n, width, z) {
 function appendToFile(fileName, data){
 	fs.appendFile(fileName, data, function (err) {
 		if (err) throw err;
-	 	console.log('Bencmark data is added to ' + fileName);
+	 	console.log('Benchmark data is added to ' + fileName);
 	});
 }
 

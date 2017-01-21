@@ -1,8 +1,8 @@
 var Benchmark = require('benchmark');
 
 
-var suite = new Benchmark.Suite;
-suite.id = "sample001";
+var id = "sample001";
+var suite = new Benchmark.Suite(id);
 // add tests 
 suite.add('RegExp#test', function() {
   /o/.test('Hello World!');
