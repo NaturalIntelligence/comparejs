@@ -23,8 +23,6 @@ require("fs").readdirSync(normalizedPath).forEach(function(file) {
 
 //Run each testsuite and move to archived once completed without error
 for (var i = 0; i < suits.length; i++) {
-	var suiteTestFileName = suits[i].testFileName;
-
 	suits[i]
 	.on('start',function(){
 		console.log("Running Suite: " + this.name);
@@ -51,7 +49,7 @@ for (var i = 0; i < suits.length; i++) {
 
 	  reporter.export();
 	  //move the suite to archieved
-	  process.env.CMPJS_ARCH && move(testDir,archDir,suiteTestFileName);
+	  process.env.CMPJS_ARCH && move(testDir,archDir,this.testFileName);
 	})
 	// run async 
 	.run({ 'async': true });
