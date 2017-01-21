@@ -1,0 +1,26 @@
+{
+  "name": "comparejs",
+  "version": "1.0.0",
+  "description": "Compare features and performance of similar js libraries (not stats)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "benchmarktest": "./index.js"
+  },
+  "bin": {
+    "comparejs": "index.js"
+  },
+  "keywords": [
+    "compare",
+    "performance",
+    "features",
+    "js",
+    "npm"
+  ],
+  "author": "Amit Gupta",
+  "license": "MIT",
+  "dependencies": {
+    "benchmark": "^2.1.3",
+    "microtime": "^2.1.2"
+  }
+}
