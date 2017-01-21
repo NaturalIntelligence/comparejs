@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Compare JS</title>
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
+	<link href="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.css" rel="stylesheet" />
+	<script src="benchmark/profile.js"></script>
+	<style type="text/css">
+		#jslib{
+			width: 80%
+		}
+	</style>
+</head>
+<body>
+
+<select id="jslib" multiple="multiple"></select> <button id="compare">Show me</button>
+
+<div id="result">
+</div>
+* High is good
+</ul>
+
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+  
+  <script type="text/javascript">
+
+    $(document).ready(function() {
+	    var options = $("#jslib");
+	    //don't forget error handling!
+	    $.each(profile, function(key) {
+	        options.append($("<option />").val(key).text(profile[key].name));
+	    });
+
+        $("#jslib").select2({
+		  maximumSelectionLength: 4
+		});
+
+        $("#compare").click(function(){
+          var list = $("#jslib").val();
+		  $.each(list,function(i){
+		  	var fileName = list[i];
+		  	$.get("benchmark/reports/"+fileName +"_report",function(data){
+		  		var lines = data.split("\n");
+		  		console.log(lines);
+		  		var _labels = new Array(lines.length - 3);
+		  		var _series = new Array(lines.length - 3);
+		  		var srvdtl = lines[2].split(",")
+		  		$("#result").append(getTemplate(fileName,profile[fileName].name,lines[1],lines[0],lines[3]));
+		  		var template = getTemplate();
+		  		for (var i = 4; i < lines.length; i++) {
+		  			var columns = lines[i].split(",");
+		  			_labels[i-4] = columns[1];
+					_series[i-4] = columns[6];
+		  		}
+		  		new Chartist.Bar('#chart-' + fileName, {
+				  labels: _labels,
+				  series: [_series]
+				},{horizontalBars: true
+					,seriesBarDistance: 10
+					,height : "50%"
+					,axisY: {
+					    offset: 300
+					}
+				});
+		  	})
+		  });
+        });
+
+        function getTemplate(id,name,ver,dt,srvdtl){
+        	return '<div>' +
+						'<p>Name: <a href="">'+name+'</a></p>' +
+						'<p>' + ver+'</p>' +
+						'<p>Server detail: '+srvdtl+'</p>' +
+						'<p>Data capture at: '+ dt +'</p>' +
+						'<div class="ct-chart ct-perfect-fourth" id="chart-'+ id +'"></div>' +
+					'</div>';
+        }
+    });
+  </script>
+</body>
+</html>
