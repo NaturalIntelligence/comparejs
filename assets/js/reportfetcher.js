@@ -19,7 +19,7 @@ $(document).ready(function(){
 });
 
 function appendQueryParam(val){
-	var loc = location.href;        
+	var loc = location.protocol + '//' + location.host + location.pathname;        
     //loc += loc.indexOf("?") === -1 ? "?" : "&";
     location.href = loc + "?q="+val;
 }
