@@ -1,0 +1,8 @@
+#DATE: 2017-01-22 11:17:24
+#VERSION: 1.0.3
+#REPORTEE: travis
+linux 4.8.12-040812-generic Linux x64, Total Memory63313461248
+loremIpsum({count:100,units:"words"}),47653.058413934115
+loremIpsum({count:1000,units:"words"}),5561.943130768672
+loremIpsum({count:3000,units:"words"}),1715.817632758061
+loremIpsum({count:100,units:"words"}),985.2734513983461
