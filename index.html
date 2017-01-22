@@ -57,7 +57,7 @@
 		  			errMsg+='</p></div>';
 		  			$("#result").append(errMsg);
 		  		}else{
-		  			var chartElement = '<div class="ct-chart ct-perfect-fourth" id="chart-'+ fileName +'">';
+		  			var chartElement = '<div class="ct-chart" id="chart-'+ fileName +'">';
 		  			chartElement += '</div>'
 		  			$("#result").append(chartElement);
 
@@ -66,9 +66,12 @@
 			  		var _series = new Array(lines.length - 3);
 			  		var template = getTemplate();
 			  		for (var i = 4; i < lines.length; i++) {
-			  			var columns = lines[i].split(",");
-			  			_labels[i-4] = columns[1];
-						_series[i-4] = columns[6];
+			  			if(lines[i].trim() !== ""){
+				  			var pos = lines[i].lastIndexOf(",")
+				  			var columns = lines[i].split("(?<!\\\\),");
+				  			_labels[i-4] = lines[i].substring(0,pos);
+							_series[i-4] = lines[i].substring(pos+1);
+						}
 			  		}
 			  		buildChart(fileName,_labels,_series);
 		  		}
@@ -83,7 +86,7 @@
 			  series: [_series]
 			},{horizontalBars: true
 				,seriesBarDistance: 10
-				,height : "50%"
+				,height : "150px"
 				,axisY: {
 				    offset: 300
 				}

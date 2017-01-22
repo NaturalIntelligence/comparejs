@@ -14,14 +14,14 @@ var reporter = function(prefix,ver){
 	this.csvLines = "#DATE: " + getDate(today) + " " + getTime(today) + "\r\n";
 	this.csvLines += "#VERSION: " + ver  + "\r\n";
 	this.csvLines += "#REPORTEE: " + (process.env.CMPJS_REPORTEE  || "local" ) + "\r\n";
-	this.csvLines += os.platform() + " " + os.release()  + " " + os.type() + " " + os.arch() + ", Total Memory(mb)" + (os.totalmem()/1048576) + "\r\n";
+	this.csvLines += os.platform() + " " + os.release()  + " " + os.type() + " " + os.arch() + ", Total Memory" + os.totalmem() + "\r\n";
 }
 
 reporter.prototype.add = function(suitename,testname,rme,sampleCount,testCount,cycleCount,opsPerSec){
-	this.csvLines +=  suitename + "," +
-		  testname + "," + rme + "," + sampleCount + "," +
+	this.csvLines +=  testname + "," + 
+		  /*rme + "," + sampleCount + "," +
 		  testCount + "," + // The number of times a test was executed.
-		  cycleCount + "," + // The number of cycles performed while benchmarking.
+		  cycleCount + "," + // The number of cycles performed while benchmarking.*/
 		  opsPerSec  //The number of executions per second.
 		  + "\r\n";
 }
