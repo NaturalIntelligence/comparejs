@@ -1,19 +1,14 @@
-#DATE: 2017-01-21 18:20:43
-#VERSION: 0.2.9
-#REPORTEE: local
-#ERR: 
-/home/user/spikes/comparejs/node_modules/fastpath/dist/lib/fastPath.js:335
-    return {
-    ^
-RangeError: Maximum call stack size exceeded
-    at fastpath (/home/user/spikes/comparejs/node_modules/fastpath/dist/lib/fastPath.js:335:5)
-
-
--------------
-/home/user/spikes/comparejs/node_modules/fastpath/dist/index.js:25
-    keys.forEach(function (entry) {
-         ^
-
-RangeError: Maximum call stack size exceeded
-    at Array.forEach (native)
-    at traverse (/home/user/spikes/comparejs/node_modules/fastpath/dist/index.js:25:10)
+{
+    "metadata": {
+        "serverdetail": "linux 4.8.12-040812-generic Linux x64, Total Memory 63313461248",
+        "testdate": "2017-01-21T18:20:43.658Z",
+        "reportee": "travis"
+    },
+     "suite": [
+        {
+            "groupname": "fastpath",
+            "version": "2.1.0",
+    		"err" : "RangeError: Maximum call stack size exceeded @ fastPath.js:335 && index.js:25"
+    	}
+    ]
+}

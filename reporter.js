@@ -11,22 +11,27 @@ Report Format
 var reporter = function(prefix,ver){
 	this.reportName = path.join(reportPath, prefix + "_report");
 	var today = new Date();
-	this.csvLines = "#DATE: " + getDate(today) + " " + getTime(today) + "\r\n";
-	this.csvLines += "#VERSION: " + ver  + "\r\n";
-	this.csvLines += "#REPORTEE: " + (process.env.CMPJS_REPORTEE  || "local" ) + "\r\n";
-	this.csvLines += os.platform() + " " + os.release()  + " " + os.type() + " " + os.arch() + ", Total Memory" + os.totalmem() + "\r\n";
+	this.report = {};
+	this.report.metadata = {};
+	this.report.metadata.serverdetail = os.platform() + " " + os.release()  + " " + os.type() + " " + os.arch() + ", Total Memory: " + os.totalmem();
+	this.report.metadata.testdate = new Date();
+	this.report.metadata.reportee = process.env.CMPJS_REPORTEE  || "local" ;
+	this.report.suite = [];
+	this.report.suite.push({ groupname : prefix, version: ver , tests : []});
 }
 
 reporter.prototype.add = function(suitename,testname,rme,sampleCount,testCount,cycleCount,opsPerSec){
-	this.csvLines +=  testname + "," + 
-		  /*rme + "," + sampleCount + "," +
+	this.report.suite[0].tests.push({ testname : testname, tps : opsPerSec});
+	/*this.csvLines +=  testname + "," + 
+		  rme + "," + sampleCount + "," +
 		  testCount + "," + // The number of times a test was executed.
-		  cycleCount + "," + // The number of cycles performed while benchmarking.*/
+		  cycleCount + "," + // The number of cycles performed while benchmarking.
 		  opsPerSec  //The number of executions per second.
-		  + "\r\n";
+		  + "\r\n";*/
 }
 
 reporter.prototype.export = function(){
+	console.log(color(JSON.stringify(this.report,null,4),'yellow'));
 	if(process.env.CMPJS_ARCH){
 		writeToFile(this.reportName,this.csvLines);
 	}else{

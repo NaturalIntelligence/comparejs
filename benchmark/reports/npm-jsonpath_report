@@ -1,8 +1,31 @@
-#DATE: 2017-01-21 22:06:02
-#VERSION: 0.2.9
-#REPORTEE: travis
-linux 4.8.12-040812-generic Linux x64, Total Memory 60380.421875
-$..h[*].foo,2858.7961621301242
-$.b[1,2],7465.737947652644
-$.b.2,9212.219586813444
-$..h[?(@.foo>13)],2571.065870388251
+{
+    "metadata": {
+        "serverdetail": "linux 4.8.12-040812-generic Linux x64, Total Memory 63313461248",
+        "testdate": "2017-01-21T22:06:02Z",
+        "reportee": "travis"
+    },
+    "suite": [
+        {
+            "groupname": "jsonpath",
+            "version": "0.2.9",
+            "tests": [
+                {
+                    "testname": "$..h[*].foo",
+                    "tps": 2858.7961621301242
+                },
+                {
+                    "testname": "$.b[1,2]",
+                    "tps": 7465.737947652644
+                },
+                {
+                    "testname": "$.b.2",
+                    "tps": 9212.219586813444
+                },
+                {
+                    "testname": "$..h[?(@.foo>13)]",
+                    "tps": 2571.065870388251
+                }
+            ]
+        }
+    ]
+}

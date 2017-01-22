@@ -1,8 +1,31 @@
-#DATE: 2017-01-22 11:17:23
-#VERSION: 0.0.0
-#REPORTEE: travis
-linux 4.8.12-040812-generic Linux x64, Total Memory63313461248
-$..h[*].foo,5359.43869381439
-$.b[1,2],105241.77455425967
-$.b.2,148840.96651534023
-$..h[?(@.foo>13)],2765.3863120624706
+{
+    "metadata": {
+        "serverdetail": "linux 4.8.12-040812-generic Linux x64, Total Memory 63313461248",
+        "testdate": "2017-01-21T11:17:23Z",
+        "reportee": "travis"
+    },
+    "suite": [
+        {
+            "groupname": "vanila js",
+            "version": "0.0.0",
+            "tests": [
+                {
+                    "testname": "$..h[*].foo",
+                    "tps": 5359.43869381439
+                },
+                {
+                    "testname": "$.b[1,2]",
+                    "tps": 105241.77455425967
+                },
+                {
+                    "testname": "$.b.2",
+                    "tps": 148840.96651534023
+                },
+                {
+                    "testname": "$..h[?(@.foo>13)]",
+                    "tps": 2765.3863120624706
+                }
+            ]
+        }
+    ]
+}

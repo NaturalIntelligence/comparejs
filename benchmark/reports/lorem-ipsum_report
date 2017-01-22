@@ -1,8 +1,31 @@
-#DATE: 2017-01-22 11:17:24
-#VERSION: 1.0.3
-#REPORTEE: travis
-linux 4.8.12-040812-generic Linux x64, Total Memory63313461248
-loremIpsum({count:100,units:"words"}),47653.058413934115
-loremIpsum({count:1000,units:"words"}),5561.943130768672
-loremIpsum({count:3000,units:"words"}),1715.817632758061
-loremIpsum({count:100,units:"words"}),985.2734513983461
+{
+    "metadata": {
+        "serverdetail": "linux 4.8.12-040812-generic Linux x64, Total Memory 63313461248",
+        "testdate": "2017-01-22T11:17:24.658Z",
+        "reportee": "travis"
+    },
+    "suite": [
+        {
+            "groupname": "lorem-ipsum",
+            "version": "1.0.3",
+            "tests": [
+                {
+                    "testname": "loremIpsum(100,\"w\")",
+                    "tps": 47653.058413934115
+                },
+                {
+                    "testname": "loremIpsum(1000,\"w\")",
+                    "tps": 5561.943130768672
+                },
+                {
+                    "testname": "loremIpsum(3000,\"w\")",
+                    "tps": 1715.817632758061
+                },
+                {
+                    "testname": "loremIpsum(5000,\"w\")",
+                    "tps": 985.2734513983461
+                }
+            ]
+        }
+    ]
+}
