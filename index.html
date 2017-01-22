@@ -352,10 +352,9 @@ Now either submit it via creating an issue on github. Or add yourself.
         }
         function getTemplate(name,ver,dt,srvdtl){
         	return '<div>' +
-						'<p>Name: <a href="">'+name+'</a></p>' +
-						'<p>' + ver+'</p>' +
-						'<p>Server detail: '+srvdtl+'</p>' +
-						'<p>Data capture at: '+ dt +'</p>' +
+						'<p><a href="">'+name+'</a> <span class="small">' + ver+'</span></p>' +
+						'<b>Server detail</b>: '+ srvdtl +
+						'<br />'+ dt +
 					'</div>';
         }
 

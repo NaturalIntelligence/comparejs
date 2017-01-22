@@ -578,3 +578,7 @@ path {
   font-size: 3em;
       vertical-align: middle;
 }
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice{
+  background-color : #1963ad !important;
+}
