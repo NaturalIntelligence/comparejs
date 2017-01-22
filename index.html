@@ -1,87 +1,326 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-	<title>Compare JS</title>
-	<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="A stub server to mock behaviour of HTTP(s) / REST / SOAP services">
+    <meta name="author" content="Amit Gupta">
+
+    <title>Natural Intelligence - CompareJS</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Theme CSS -->
+    <link href="assets/css/freelancer.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/atom-one-dark.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
 	<link href="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.css" rel="stylesheet" />
 	<script src="benchmark/profile.js"></script>
-	<style type="text/css">
-		#jslib{
-			width: 80%
-		}
-		.red{
-			background-color: #ffdcdc; 
-		}
-	</style>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
 </head>
-<body>
 
-<select id="jslib" multiple="multiple"></select> <button id="compare">Show me</button>
+<body id="page-top" class="index">
 
-<div id="result">
-</div>
-* High is good
+    <!-- Navigation -->
+    <nav id="mainNav" class="navbar navbar-default navbar-fixed-top navbar-custom">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
+                </button>
+                <!-- <img src="img/stubmatic_logo.png" width="50px" /> --><a class="navbar-brand" href="#page-top">Compare JS</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="hidden">
+                        <a href="#page-top"></a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="#howto">Add benchmark</a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="#showcase">Showcase</a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=KQJAX48SPUKNC">Donate</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+<a href="https://github.com/NaturalIntelligence/comparejs"><img class="bring-up" style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/121cd7cbdc3e4855075ea8b558508b91ac463ac2/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f677265656e5f3030373230302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_green_007200.png"></a>
+    <!-- Header -->
+    <header style="background-color: #2c3e50">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <!-- <img src="img/stubmatic_logo.png" width="300px" /> -->
+                    <div class="intro-text">
+                        <span class="name rubberBand animated">COMPARE JS</span>
+                        <span class="skills">Compare features and performance of similar js libraries (not just stats)</span>
+<div class="empty"></div>
+<div  class="empty"></div>
+                        <span><select id="jslib" multiple="multiple"></select><span class="s-3x"><i id="compare" class="fa fa-arrow-circle-right"></i></span></span>
+                        <div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Features Section -->
+    <section class="success" id="howto" style="background-color: #1963ad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2>How To</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="empty"></div>
+                    <h3>To add benchmark test for a js library/code, or npm package</h4>
+
+
+<p>Create a performance test similar to below code;</p>
+<pre class="code javascript">
+var Benchmark = require('benchmark');
+
+var id = "sample001"; //Manadatory
+var suite = new Benchmark.Suite(id);
+// add tests 
+suite.add('RegExp#test', function() {
+  /o/.test('Hello World!');
+})
+.add('String#indexOf', function() {
+  'Hello World!'.indexOf('o') > -1;
+})
+
+module.exports = suite
+</pre>
+<div class="empty"></div>
+
+<p>
+Now either submit it via creating an issue on github. Or add yourself.
+
+<br/>To add yourself, 
+<ul>
+	<li>go to <a href="https://github.com/NaturalIntelligence/comparejs/tree/master/benchmark/tests">tests</a> folder. Add the above test. (check <a href="https://github.com/NaturalIntelligence/comparejs/tree/master/benchmark/archived">archived</a> folder for more ideas)</li>
+	<li>Add <a href="https://github.com/NaturalIntelligence/comparejs/tree/master/benchmark/profile">profile</a> entry</li>
+	<li>Add dev dependency in package.json (if any)</li>
+	<li>run <kbd>npm run benchmarktest</kbd></li>
+	<li>check if a new file is generated in <a href="https://github.com/NaturalIntelligence/comparejs/tree/master/benchmark/reports">reports</a> folder</li>
 </ul>
+</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
-  
-  <script type="text/javascript">
+    <!-- Showcase Section -->
+    <section id="showcase">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2>What is compared yet?</h2>
+                </div>
+            </div>
+            <div class="empty"></div>
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2">
+                    <p>This project will grow slowoly. Because I'll be adding JS/NPM libraries and code that I'm gonna add in my other projects. But you are welcome to add the benchmarks that you wish.
+                    </p>
+                    <p>You can type and check above in tag selector to know which libraries are added yet.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    $(document).ready(function() {
-	    var options = $("#jslib");
-	    //don't forget error handling!
-	    $.each(profile, function(key) {
-	        options.append($("<option />").val(key).text(profile[key].name));
-	    });
+    <!-- Footer -->
+    <footer class="text-center">
+        <div class="footer-above">
+            <div class="container">
+                <div class="row">
+                    <div class="footer-col col-md-4">
+                        
+                    </div>
+                    <div class="footer-col col-md-4">
 
-        $("#jslib").select2({
-		  maximumSelectionLength: 4
-		});
+                    </div>
+                    <div class="footer-col col-md-4">
+                        <h3>Contact me</h3>
+                        <ul class="list-inline">
+                            <li>
+                                <a href="#" class="btn-social btn-outline"><img class="me" src="assets/img/a.png" />
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://twitter.com/amitguptagwl" class="btn-social btn-outline"><i class="fa fa-fw fa-twitter"></i></a>
+                            </li>
+                            <li>
+                                <a href="http://stackoverflow.com/users/453767/amit-gupt" class="btn-social btn-outline"><i class="fa fa-fw fa-stack-overflow"></i></a>
+                            </li>
+                            <li>
+                                <a href="https://www.linkedin.com/in/amitguptagwl" class="btn-social btn-outline"><i class="fa fa-fw fa-linkedin"></i></a>
+                            </li>
+                            <li>
+                                <a href="https://github.com/amitguptagwl" class="btn-social btn-outline"><i class="fa fa-fw fa-github"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-below">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        Your contribution will be appreciated
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
 
-        $("#compare").click(function(){
-        	$("#result").empty();
-          var list = $("#jslib").val();
-		  $.each(list,function(i){
-		  	var fileName = list[i];
-		  	$.get("benchmark/reports/"+fileName +"_report",function(data){
-		  		var lines = data.split("\n");
-		  		$("#result").append(getTemplate(profile[fileName].name,lines[1],lines[0],lines[3]));
-		  		if(lines[3].indexOf("#ERR:") > -1){
-		  			var errMsg='<div class="red"><p>';
-		  			for (var i = 4; i < lines.length; i++) {
-		  				errMsg+=lines[i] + '<br />';
-		  			}
-		  			errMsg+='</p></div>';
-		  			$("#result").append(errMsg);
-		  		}else{
-		  			var chartElement = '<div class="ct-chart" id="chart-'+ fileName +'">';
-		  			chartElement += '</div>'
-		  			$("#result").append(chartElement);
+    <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
+    <div class="scroll-top page-scroll hidden-sm hidden-xs hidden-lg hidden-md">
+        <a class="btn btn-primary" href="#page-top">
+            <i class="fa fa-chevron-up"></i>
+        </a>
+    </div>
 
-		  			//construct chart
-		  			var _labels = new Array(lines.length - 3);
-			  		var _series = new Array(lines.length - 3);
-			  		var template = getTemplate();
-			  		for (var i = 4; i < lines.length; i++) {
-			  			if(lines[i].trim() !== ""){
-				  			var pos = lines[i].lastIndexOf(",")
-				  			var columns = lines[i].split("(?<!\\\\),");
-				  			_labels[i-4] = lines[i].substring(0,pos);
-							_series[i-4] = lines[i].substring(pos+1);
-						}
+    <!-- Portfolio Modals -->
+    <div class="portfolio-modal modal fade" id="resultModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+                <div class="lr">
+                    <div class="rl">
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-10 col-lg-offset-1">
+                        <div class="modal-body">
+                            <h2>Instructions</h2>
+                            <div class="empty"></div>
+ 								<div id="result"></div>
+                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+
+    <!-- <script src="assets/js/textfill.min.js"></script> -->
+    <!-- Bootstrap Core JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+    <script  src="assets/js/highlight.pack.js" ></script>
+    <!-- Theme JavaScript -->
+    <script src="assets/js/freelancer.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+        	var options = $("#jslib");
+
+		    $.each(profile, function(key) {
+		        options.append($("<option />").val(key).text(profile[key].name));
+		    });
+
+            //$('.example_box').fitText(0.6, { minFontSize: '20px', maxFontSize: '40px' });
+            hljs.configure({   // optionally configure hljs
+              languages: ["diff", "javascript", "css",
+               "bash", "objectivec", "xml", 
+                "cs", "http", "markdown", "yaml",  "json"],
+              useBR: false
+            });
+            $('pre.code').each(function(i, block) {
+                hljs.highlightBlock(block);
+            });
+            //hljs.initHighlightingOnLoad();
+            $("#jslib").select2({
+			  maximumSelectionLength: 4
+			});
+
+            $("#compare").click(function(){
+        	  $("#result").empty();
+	          var list = $("#jslib").val();
+			  $.each(list,function(i){
+			  	var fileName = list[i];
+			  	$.get("benchmark/reports/"+fileName +"_report",function(data){
+			  		var lines = data.split("\n");
+			  		$("#result").append(getTemplate(profile[fileName].name,lines[1],lines[0],lines[3]));
+			  		$("#resultModal").modal();
+			  		if(lines[3].indexOf("#ERR:") > -1){
+			  			var errMsg='<div class="red"><p>';
+			  			for (var i = 4; i < lines.length; i++) {
+			  				errMsg+=lines[i] + '<br />';
+			  			}
+			  			errMsg+='</p></div>';
+			  			$("#result").append(errMsg);
+			  		}else{
+			  			var chartElement = '<div class="ct-chart" id="chart-'+ fileName +'">';
+			  			chartElement += '<br/>*High is good</div>'
+			  			$("#result").append(chartElement);
+
+			  			//construct chart
+			  			var _labels = new Array(lines.length - 3);
+				  		var _series = new Array(lines.length - 3);
+				  		var template = getTemplate();
+				  		for (var i = 4; i < lines.length; i++) {
+				  			if(lines[i].trim() !== ""){
+					  			var pos = lines[i].lastIndexOf(",")
+					  			var columns = lines[i].split("(?<!\\\\),");
+					  			_labels[i-4] = lines[i].substring(0,pos);
+								_series[i-4] = lines[i].substring(pos+1);
+							}
+				  		}
+				  		buildChart(fileName,_labels,_series);
+				  		//chart.update();
+				  		//$("#result").__chartist__.update();
 			  		}
-			  		buildChart(fileName,_labels,_series);
-		  		}
-		  		
-		  	})
-		  });
+			  	});
+			  });
+           	  
+            });
+            
         });
 
+
         function buildChart(id,_labels,_series){
-        	new Chartist.Bar('#chart-' + id, {
+        	return new Chartist.Bar('#chart-' + id, {
 			  labels: _labels,
 			  series: [_series]
 			},{horizontalBars: true
@@ -100,7 +339,16 @@
 						'<p>Data capture at: '+ dt +'</p>' +
 					'</div>';
         }
-    });
-  </script>
+
+    </script>
+            
+    <!-- <script>
+      ((window.gitter = {}).chat = {}).options = {
+        room: 'Stubmatic/Lobby'
+      };
+    </script>
+    <script src="https://sidecar.gitter.im/dist/sidecar.v1.js" async defer></script> -->
+
 </body>
+
 </html>
