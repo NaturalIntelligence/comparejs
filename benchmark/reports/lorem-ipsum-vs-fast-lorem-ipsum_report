@@ -1,0 +1,52 @@
+{
+    "metadata": {
+        "serverdetail": "linux 4.8.12-040812-generic Linux x64, Total Memory 63313461248",
+        "testdate": "2017-01-22T11:17:33.658Z",
+        "reportee": "travis"
+    },
+    "suite": [
+        {
+            "groupname": "fast-lorem-ipsum",
+            "version": "1.0.1",
+            "tests": [
+                {
+                    "testname": "loremIpsum(100,\"w\")",
+                    "tps": 19227817.801950052
+                },
+                {
+                    "testname": "loremIpsum(1000,\"w\")",
+                    "tps": 17129189.21508158
+                },
+                {
+                    "testname": "loremIpsum(3000,\"w\")",
+                    "tps": 11936728.653028272
+                },
+                {
+                    "testname": "loremIpsum(5000,\"w\")",
+                    "tps": 9275257.673904762
+                }
+            ]
+        },{
+            "groupname": "lorem-ipsum",
+            "version": "1.0.3",
+            "tests": [
+                {
+                    "testname": "loremIpsum(100,\"w\")",
+                    "tps": 47653.058413934115
+                },
+                {
+                    "testname": "loremIpsum(1000,\"w\")",
+                    "tps": 5561.943130768672
+                },
+                {
+                    "testname": "loremIpsum(3000,\"w\")",
+                    "tps": 1715.817632758061
+                },
+                {
+                    "testname": "loremIpsum(5000,\"w\")",
+                    "tps": 985.2734513983461
+                }
+            ]
+        }
+    ]
+}

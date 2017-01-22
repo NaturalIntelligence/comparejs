@@ -1,0 +1,73 @@
+{
+    "metadata": {
+        "serverdetail": "linux 4.8.12-040812-generic Linux x64, Total Memory 63313461248",
+        "testdate": "2017-01-21T22:06:02Z",
+        "reportee": "travis"
+    },
+    "suite": [
+        {
+            "groupname": "jsonpath",
+            "version": "0.2.9",
+            "tests": [
+                {
+                    "testname": "$..h[*].foo",
+                    "tps": 2858.7961621301242
+                },
+                {
+                    "testname": "$.b[1,2]",
+                    "tps": 7465.737947652644
+                },
+                {
+                    "testname": "$.b.2",
+                    "tps": 9212.219586813444
+                },
+                {
+                    "testname": "$..h[?(@.foo>13)]",
+                    "tps": 2571.065870388251
+                }
+            ]
+        },{
+            "groupname": "jsonpath-plus",
+            "version": "0.16.0",
+            "tests": [
+                {
+                    "testname": "$..h[*].foo",
+                    "tps": 5923.08500352405
+                },
+                {
+                    "testname": "$.b[1,2]",
+                    "tps": 102500.59270883455
+                },
+                {
+                    "testname": "$.b.2",
+                    "tps": 166331.3535760836
+                },
+                {
+                    "testname": "$..h[?(@.foo>13)]",
+                    "tps": 665.5085382199852
+                }
+            ]
+        },{
+            "groupname": "vanila js",
+            "version": "0.0.0",
+            "tests": [
+                {
+                    "testname": "$..h[*].foo",
+                    "tps": 5359.43869381439
+                },
+                {
+                    "testname": "$.b[1,2]",
+                    "tps": 105241.77455425967
+                },
+                {
+                    "testname": "$.b.2",
+                    "tps": 148840.96651534023
+                },
+                {
+                    "testname": "$..h[?(@.foo>13)]",
+                    "tps": 2765.3863120624706
+                }
+            ]
+        }
+    ]
+}

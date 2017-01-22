@@ -39,5 +39,18 @@ var profile = {
 		"name" : "vanila-jsonpath",
 		"description" : "Found somewhere on the net",
 		"logopath" : ""
+	},
+	"lorem-ipsum-vs-fast-lorem-ipsum" : { 
+		"id" : "lorem-ipsum-vs-fast-lorem-ipsum" ,
+		"name" : "lorem-ipsum vs fast-lorem-ipsum",
+		"description" : "Comparison of 2 lorem-ipsum generator libraries",
+		"logopath" : ""
+	},
+	"jsonpath-comparison" : { 
+		"id" : "jsonpath-comparison" ,
+		"name" : "jsonpath vs jsonpath-plus vs vanila jsonpath",
+		"description" : "Comparison of 2 jsonpath libraries to vaila jsonpath js script",
+		"logopath" : ""
 	}
+
 }
