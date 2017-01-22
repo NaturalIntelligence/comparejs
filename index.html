@@ -248,8 +248,10 @@ Now either submit it via creating an issue on github. Or add yourself.
     <script  src="assets/js/highlight.pack.js" ></script>
     <!-- Theme JavaScript -->
     <script src="assets/js/freelancer.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+    
+    <!-- <script src="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
 
     <script type="text/javascript">
         $(document).ready(function(){
@@ -282,7 +284,7 @@ Now either submit it via creating an issue on github. Or add yourself.
 			  	$.get("benchmark/reports/"+fileName +"_report",function(data){
 			  		var lines = data.split("\n");
 			  		$("#result").append(getTemplate(profile[fileName].name,lines[1],lines[0],lines[3]));
-			  		$("#resultModal").modal();
+			  		$("#resultModal").modal('show');
 			  		if(lines[3].indexOf("#ERR:") > -1){
 			  			var errMsg='<div class="red"><p>';
 			  			for (var i = 4; i < lines.length; i++) {
@@ -291,8 +293,8 @@ Now either submit it via creating an issue on github. Or add yourself.
 			  			errMsg+='</p></div>';
 			  			$("#result").append(errMsg);
 			  		}else{
-			  			var chartElement = '<div class="ct-chart" id="chart-'+ fileName +'">';
-			  			chartElement += '<br/>*High is good</div>'
+			  			var chartElement = '<canvas class="ct-chart" id="chart-'+ fileName +'" height="150px">';
+			  			chartElement += '</canvas>'
 			  			$("#result").append(chartElement);
 
 			  			//construct chart
@@ -320,7 +322,7 @@ Now either submit it via creating an issue on github. Or add yourself.
 
 
         function buildChart(id,_labels,_series){
-        	return new Chartist.Bar('#chart-' + id, {
+        	/*return new Chartist.Bar('#chart-' + id, {
 			  labels: _labels,
 			  series: [_series]
 			},{horizontalBars: true
@@ -329,6 +331,23 @@ Now either submit it via creating an issue on github. Or add yourself.
 				,axisY: {
 				    offset: 300
 				}
+			});*/
+			var data = {
+				labels : _labels,
+				datasets: [{ data: _series}]
+			};
+			var myBarChart = new Chart("chart-"+id, {
+			    type: 'horizontalBar',
+			    data: data,
+			    options: {
+			    	legend: {
+			            display: false
+			        },
+			    	title: {
+			    		display: true,
+			    		text: "Higher is better"
+			    	}
+			    }
 			});
         }
         function getTemplate(name,ver,dt,srvdtl){
