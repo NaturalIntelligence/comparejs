@@ -32,13 +32,12 @@ reporter.prototype.add = function(suitename,testname,rme,sampleCount,testCount,c
 
 reporter.prototype.export = function(){
 	console.log(color(JSON.stringify(this.report,null,4),'yellow'));
-	if(process.env.CMPJS_ARCH){
+	/*if(process.env.CMPJS_ARCH){
 		writeToFile(this.reportName,this.csvLines);
 	}else{
 		console.log("Report: " + this.reportName);
 		console.log(color(this.csvLines,'yellow'));
-	}
-	this.csvLines = "";
+	}*/
 }
 
 function getDate (dt){

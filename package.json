@@ -24,7 +24,9 @@
     "microtime": "^2.1.2"
   },
   "devDependencies": {
+    "@f5io/jsonpath": "^1.0.1",
     "fast-lorem-ipsum": "^1.0.1",
+    "jsonpath": "^0.2.9",
     "jsonpath-plus": "^0.16.0",
     "lorem-ipsum": "^1.0.3"
   }

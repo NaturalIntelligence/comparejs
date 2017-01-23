@@ -1,4 +1,4 @@
-var jp = require('jsonpath-plus');
+var jp = require('@f5io/jsonpath');
 
 var obj = {
     'a': {
@@ -66,30 +66,28 @@ var patterns = {
     pattern4: '$..h[?(@.foo>13)]'
 }
 
-/*console.log(jp({json:obj, path:patterns.pattern1}));
-console.log(jp({json:obj, path:patterns.pattern2}));
-console.log(jp({json:obj, path:patterns.pattern3}));
-console.log(jp({json:obj, path:patterns.pattern4}));*/
+/*console.log(jp(patterns.pattern1,obj));
+console.log(jp(patterns.pattern2,obj));
+console.log(jp(patterns.pattern3,obj));
+console.log(jp(patterns.pattern4,obj));*/
 
 var Benchmark = require('benchmark');
-
-var id = "npm-jsonpath-plus";
+var id = "npm-fastpath";
 var suite = new Benchmark.Suite(id);
-suite.version = "0.16.0";
-
+suite.version = "2.1.0";
 
 // add tests 
 suite.add(patterns.pattern1, function() {
-  jp({json:obj, path:patterns.pattern1});
+  jp(patterns.pattern1,obj)
 })
 .add(patterns.pattern2, function() {
-  jp({json:obj, path:patterns.pattern2});
+  jp(patterns.pattern2,obj)
 })
 .add(patterns.pattern3, function() {
-  jp({json:obj, path:patterns.pattern3});
+  jp(patterns.pattern3,obj)
 })
 .add(patterns.pattern4, function() {
-  jp({json:obj, path:patterns.pattern4});
+  jp(patterns.pattern4,obj)
 })
 
 module.exports = suite
