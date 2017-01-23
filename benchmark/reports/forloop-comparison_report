@@ -1,0 +1,26 @@
+{
+    "metadata": {
+        "serverdetail": "linux 4.8.12-040812-generic Linux x64, Total Memory: 63313461248",
+        "testdate": "2017-01-23T06:58:46.704Z",
+        "reportee": "travis"
+    },
+    "suite": [
+        {
+            "groupname": "for_forin_foreach",
+            "tests": [
+                {
+                    "testname": "for",
+                    "tps": 122084.29214347561
+                },
+                {
+                    "testname": "for..in",
+                    "tps": 7341.461963833147
+                },
+                {
+                    "testname": "forEach",
+                    "tps": 9736.085733925911
+                }
+            ]
+        }
+    ]
+}

@@ -49,7 +49,13 @@ var profile = {
 	"jsonpath-comparison" : { 
 		"id" : "jsonpath-comparison" ,
 		"name" : "jsonpath vs jsonpath-plus vs vanila jsonpath",
-		"description" : "Comparison of 2 jsonpath libraries to vaila jsonpath js script",
+		"description" : "Comparison of 3 jsonpath libraries to vaila jsonpath js script",
+		"logopath" : ""
+	},
+	"forloop-comparison" : { 
+		"id" : "jsonpath-comparison" ,
+		"name" : "for vs for..in forEach",
+		"description" : "Comparison of different for loop syntax supported in nativ js",
 		"logopath" : ""
 	}
 
