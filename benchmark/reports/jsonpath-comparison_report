@@ -69,5 +69,6 @@
                 }
             ]
         }
-    ]
+    ],
+    "notes": "<ul class='notes'><li>'fastpath' is out from race due to the following error;<br/><span class='red'>RangeError: Maximum call stack size exceeded @ fastPath.js:335 && index.js:25</span></li><li>'@f5io/jsonpath' beats all the competitor. But since many features result wrong. It is also out of race.</li><li>'jsonpath-plus' is the winner.</li></ul>"
 }

@@ -1,0 +1,27 @@
+{
+    "metadata": {
+        "serverdetail": "linux 3.13.0-107-generic Linux x64, Total Memory: 8049836032",
+        "testdate": "2017-01-28T11:59:35.421Z",
+        "reportee": "local"
+    },
+    "suite": [
+        {
+            "groupname": "XMLdata2JSONdata",
+            "tests": [
+                {
+                    "testname": "xml-mapping",
+                    "tps": 2450.2406871804324
+                },
+                {
+                    "testname": "xml2js",
+                    "tps": 2323.0707576603377
+                },
+                {
+                    "testname": "xml2json",
+                    "tps": 934.8457470726862
+                }
+            ]
+        }
+    ],
+    "notes": "<ul class='notes'><li>The result of 'xml-mapping' and 'xml2js' are not satisfactory.</li><li> The result of 'xml2js-expat' and 'xml2json' are as per expectations But 'xml2js-expat' gives error;<br/><span class='red'>Err: node: ../node-expat.cc:129: bool Parser::parseString(v8::String&, int): Assertion `buf != __null' failed.<span></li><li>So 'xml2json' is the winner.</li></ul>"
+}

@@ -69,6 +69,9 @@ function fetchReport(suiteName){
 			});
 			buildChart(_labels,datasets);
 		}
+		if(report.notes){
+			$("#reportdetail").append('<br /><h2>Note:</h2><div><p>' + report.notes + '</p></div>');
+		}
 	});
 }
 var barcolors = [ 
@@ -99,7 +102,14 @@ function buildChart(_labels,_datasets){
 	    	title: {
 	    		display: true,
 	    		text: "Higher is better"
-	    	}
+	    	},
+			scales: {
+				xAxes: [{
+					ticks: {
+						beginAtZero: true
+					}
+				}]
+			}
 	    }
 	});
 }

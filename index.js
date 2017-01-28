@@ -21,7 +21,7 @@ require("fs").readdirSync(normalizedPath).forEach(function(file) {
 	}
 });
 
-//Run each testsuite and move to archived once completed without error
+// Run each testsuite and move to archived once completed without error
 for (var i = 0; i < suits.length; i++) {
 	suits[i]
 	.on('start',function(){

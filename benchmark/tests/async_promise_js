@@ -1,0 +1,127 @@
+var async = require('async');
+var deasync = require('deasync');
+var promise = require('bluebird');
+var fs = require('fs');
+var http = require('http');
+
+// var async = require('asyncawait').async;
+// var await = require('asyncawait').await;
+
+var options = {
+  host: 'www.google.com',
+  port: 80,
+  path: '/index.html'
+};
+
+function get(callback){
+	http.get(options, function(res) {
+	var body = '';
+	res.on('data', function(chunk) {
+		body += chunk;
+	});
+	res.on('end', function() {
+		callback || callback(body);
+	});
+	}).on('error', function(e) {
+		console.log("Got error: " + e.message);
+	});
+}
+
+function parseAndMatch(callback) {
+  return Promise.all([
+      new Promise(function(resolve, reject) {
+		 resolve(get(callback));
+	  }),
+      new Promise(function(resolve, reject) {
+		 resolve(get(callback));
+	  }),
+  ]);
+}
+
+function joinAndReturn(callback){
+	parseAndMatch(callback).then((results) => {
+		//callback(results);
+	});
+}
+
+//console.log(joinAndReturn());
+
+function parseAndMatch2(callback) {
+  return promise.all([
+      new promise(function(resolve, reject) {
+		resolve(get(callback));
+	  }),
+      new promise(function(resolve, reject) {
+		resolve(get(callback));
+	  }),
+  ]);
+}
+
+function joinAndReturn2(callback){
+	parseAndMatch2(callback).then((results) => {
+		//callback(results);
+	});
+}
+
+//console.log(joinAndReturn());
+// joinAndReturn(result => {
+// 	console.log(result);
+// });
+
+// joinAndReturn2(result => {
+// 	console.log(result);
+// });
+
+function deasyncResult(onComplete){
+	async.parallel({
+	    one: function(callback) {
+			get(data => {callback(null, data)} );
+	    },
+	    two: function(callback) {
+			get(data => {callback(null, data)} );
+	    }
+	}, function(err, results) {
+		onComplete(results);
+	});
+}
+
+//console.log("Final: " + deasyncResult());
+// deasyncResult( result => {
+// 	console.log(result);
+// });
+
+function syncCallResult(callback){
+	get(callback);
+	get(callback);
+}
+
+//console.log(syncCallResult());
+
+var Benchmark = require('benchmark');
+
+
+var id = "async_promise";
+var suite = new Benchmark.Suite(id);
+// add tests 
+// suite.add('async + deasync', function() {
+//   deasyncResult((result) => {
+// 	  //do nothing
+//   });
+// })
+// .add('native Promise + deasync', function() {
+//   joinAndReturn((result) => {
+// 	  //do nothing
+//   })
+// })
+suite.add('bluebird promise + deasync', function() {
+  joinAndReturn2((result) => {
+	  //do nothing
+  })
+})
+// suite.add('sync', function() {
+//   syncCallResult(result => {
+// 	  //do nothing
+//   });
+// })
+
+module.exports = suite;
