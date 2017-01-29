@@ -7,12 +7,12 @@ var xmlData = fs.readFileSync(fileNamePath).toString();
 //console.log(xmlData);
 
 
-var xml2jsExpat = require('xml2js-expat');
-var parser = new xml2jsExpat.Parser();
-parser.on('end', function (result, error) {
-    //console.log(JSON.stringify(result,null,4));
-});
-parser.parseString(xmlData);
+// var xml2jsExpat = require('xml2js-expat');
+// var parser = new xml2jsExpat.Parser();
+// parser.on('end', function (result, error) {
+//     //console.log(JSON.stringify(result,null,4));
+// });
+// parser.parseString(xmlData);
 
 var xml2js = require('xml2js');
 // var result = xml2js.parseString(xmlData, function(err, result){
@@ -24,6 +24,9 @@ var XMLMapping = require('xml-mapping');
 
 var xml2json = require('xml2json');
 //console.log(JSON.stringify(xml2json.toJson(xmlData),null,4));
+
+var fastXmlParser = require('fast-xml-parser');
+//console.log(JSON.stringify(myxml2json.parse(xmlData),null,4));
 
 var Benchmark = require('benchmark');
 
@@ -43,11 +46,12 @@ suite
 .add('xml2json', function() {
   xml2json.toJson(xmlData)
 })
-//Err: node: ../node-expat.cc:129: bool Parser::parseString(v8::String&, int): Assertion `buf != __null' failed.
-//Aborted (core dumped)
-// .add('xml2js-expat', function() {
-//   parser.parseString(xmlData);
-// })
+.add('fast-xml-parser', function() {
+  fastXmlParser.parse(xmlData);
+})
+// // .add('xml2js-expat', function() { //Err
+// //   parser.parseString(xmlData);
+// // })
 
 
-module.exports = suite
+module.exports = suite;

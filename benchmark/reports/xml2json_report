@@ -19,9 +19,13 @@
                 {
                     "testname": "xml2json",
                     "tps": 934.8457470726862
+                },
+                {
+                    "testname": "fast-xml-parser",
+                    "tps": 11647.16115120365
                 }
             ]
         }
     ],
-    "notes": "<ul class='notes'><li>The result of 'xml-mapping' and 'xml2js' are not satisfactory.</li><li> The result of 'xml2js-expat' and 'xml2json' are as per expectations But 'xml2js-expat' gives error;<br/><span class='red'>Err: node: ../node-expat.cc:129: bool Parser::parseString(v8::String&, int): Assertion `buf != __null' failed.<span></li><li>So 'xml2json' is the winner.</li></ul>"
+    "notes": "<ul class='notes'><li>The result of 'xml-mapping' and 'xml2js' are not satisfactory.</li><li> The result of 'xml2js-expat' and 'xml2json' are as per expectations But 'xml2js-expat' gives error;<br/><span class='red'>Err: node: ../node-expat.cc:129: bool Parser::parseString(v8::String&, int): Assertion `buf != __null' failed.<span></li><li>So 'xml2json' is dependent on 'node-expat', which is implemented in C/C++. So you may have to install extra dependencies on your OS to use it.</li><li>'fast-xml-parser' is the winner.</li></ul>"
 }

@@ -1,7 +1,7 @@
 var profile = {
 	"xml2json" : { 
 		"id" : "xml2json" ,
-		"name" : "xml2js-expat vs xml2js vs xml-mapping vs xml2json",
+		"name" : "xml2js-expat vs xml2js vs xml-mapping vs xml2json vs fast-xml-parser",
 		"description" : "Comparison of xml2json convertor js libraries"
 	},
 	"lorem-ipsum-vs-fast-lorem-ipsum" : { 
