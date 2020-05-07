@@ -18,6 +18,11 @@ var profile = {
 		"id" : "jsonpath-comparison" ,
 		"name" : "for vs for..in forEach",
 		"description" : "Comparison of different for loop syntax supported in nativ js"
+	},
+	"startsWith" : { 
+		"id" : "startsWith" ,
+		"name" : "startsWith vs indexOf vs custom implementation",
+		"description" : "Comparison of different ways to check if a string startsWith X"
 	}
 
 }

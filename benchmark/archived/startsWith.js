@@ -12,6 +12,7 @@ function startsWith(str, toMatch, from){
     return true;
 }
 let pos = (() => 2)();
+
 suite
     .add("startsWith", function() {
         data.startsWith("meth", 2);
@@ -43,23 +44,4 @@ suite
         }
     })
 
-    .on("start", function() {
-        console.log("Running Suite: " + this.name);
-    })
-    .on("error", function(e) {
-        console.log("Error in Suite: ", e);
-    })
-    .on("abort", function(e) {
-        console.log("Aborting Suite: " + this.name);
-    })
-    //.on('cycle',function(event){
-    //	console.log("Suite ID:" + event.target.id);
-    //})
-    // add listeners
-    .on("complete", function() {
-        for (let j = 0; j < this.length; j++) {
-            console.log(this[j].name + " : " + this[j].hz + " requests/second");
-        }
-    })
-    // run async
-    .run({"async": true});
+    module.exports = suite

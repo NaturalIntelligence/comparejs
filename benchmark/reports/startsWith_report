@@ -7,7 +7,7 @@
     },
     "suite": [
         {
-            "groupname": "for_forin_foreach",
+            "groupname": "startsWith",
             "tests": [
                 {
                     "testname": "startsWith",
