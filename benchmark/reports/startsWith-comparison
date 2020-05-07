@@ -1,0 +1,31 @@
+{
+    "metadata": {
+        "serverdetail": "linux 4.8.12-040812-generic Linux x64, Total Memory: 63313461248",
+        "testdate": "2017-01-23T06:58:46.704Z",
+        "reportee": "local",
+        "Node": "10.10.0"
+    },
+    "suite": [
+        {
+            "groupname": "for_forin_foreach",
+            "tests": [
+                {
+                    "testname": "startsWith",
+                    "tps": 35274755.46406996
+                },{
+                    "testname": "custom with dynamic position",
+                    "tps": 141753396.8876261
+                },{
+                    "testname": "custom with fix position",
+                    "tps": 710986239.6341865
+                },{
+                    "testname": "custom startsWith function",
+                    "tps": 31716506.674641192
+                },{
+                    "testname": "indexOf",
+                    "tps": 693169107.8815964
+                }
+            ]
+        }
+    ]
+}
